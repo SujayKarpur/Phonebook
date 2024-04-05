@@ -1,0 +1,48 @@
+{% extends "contacts/base.html" %}
+{% load static %}
+{% block content %}
+  {% if contacts %}
+    {% for contact in contacts %}
+    {% if contact.author == user %}
+        <article class="media content-section">
+            {% if contact.image %}
+            <img class="rounded-circle article-img" src="{{contact.image.url}}">
+            {% else %}
+            <img class="rounded-circle article-img" src="{% static 'contacts/default.jpeg'%}">
+            {% endif %}  
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">{{ contact.date_posted }}</small>
+            </div>
+            <h3><a class="article-title" href="{% url 'contact-detail' contact.id %}">{{ contact.name }}</a></h3>
+            <!-- <p class="article-content">{{ post.content }}</p> -->
+          </div>
+        </article>
+    {% endif %}
+    {% endfor %}
+    <br>
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{% static 'contacs/default.jpeg'%}" alt="Insert Image">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">{{ time }}</small>
+      </div>
+      <h3><a class="article-title" href="{% url 'contact-create' %}"> Create New Contact </a></h3>
+      <!-- <p class="article-content">{{ post.content }}</p> -->
+    </div>
+  </article>
+  {% else %}
+        <h3> You have not created any contacts yet.</h3>
+        <br><br>
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{% static 'contacs/default.jpeg'%}" alt="Insert Image">
+        <div class="media-body">
+          <div class="article-metadata">
+            <small class="text-muted">{{ time }}</small>
+          </div>
+          <h3><a class="article-title" href="{% url 'contact-create' %}"> Create New Contact </a></h3>
+          <!-- <p class="article-content">{{ post.content }}</p> -->
+        </div>
+      </article>
+  {% endif %}
+{% endblock content %}

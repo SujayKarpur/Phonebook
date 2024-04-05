@@ -1,0 +1,48 @@
+{% extends "contacts/base.html" %}
+{% load static %}
+{% block content %}
+    <article class="media content-section">
+        {% if object.image %}
+        <img class="rounded-circle account-img" src="{{object.image.url}}">
+        {% else %}
+        <img class="rounded-circle article-img" src="{% static 'contacts/default.jpeg'%}">
+        {% endif %}  
+        <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ object.date_posted }}</small>
+        </div>
+        <h2 class="article-title">{{ object.name }}</h2>
+        <br><br>
+        <h3 class="article-title">{{ object.number }}</h3>
+        <br><br>
+        
+        
+        <!-- <p class="article-content">{{ post.content }}</p> -->
+        </div>
+        
+    </article>
+
+    <table class="flat-table flat-table-1">
+        <thead>
+          <!-- <th>Field</th>
+          <th>Value</th> -->
+        </thead>
+        <tbody>
+          <tr>
+            <td>Relationship</td>
+            <td>{{object.relationship_type}}</td>
+          </tr>
+          <tr>
+            <td>emailID</td>
+            <td>{{object.email}}</td>
+          </tr>
+        </tbody>
+      </table>      
+      <br><br>
+      <h3> Info : </h3>
+      {% if object.info %}
+      <p> {{object.info}} </p>
+      {% else %}
+      <p> No information provided.</p>
+      {% endif %}
+{% endblock content %}
