@@ -1,2 +1,2 @@
 # Phonebook
-phonebook application in django 
+Phonebook application in django 
